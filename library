@@ -1,0 +1,13 @@
+SELECT
+b.book_name AS Title,
+c.customer_name AS Customer, 
+c.customer_address AS Address,
+l.loan_date AS Date
+FROM books AS b JOIN loans AS l
+ON b.book_id = l.book_id
+JOIN customers AS c ON c.customer_id = l.customer_id
+JOIN authors AS a ON b.author_id = a.author_id
+WHERE b.book_edition = 1
+AND (a.author_name = 'Cay S. Horstmann'
+OR a.author_name = 'Barbara Abercrombie')
+ORDER BY l.loan_date DESC, b.book_name DESC;
